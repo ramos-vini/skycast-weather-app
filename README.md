@@ -6,7 +6,7 @@
 |----------|-----|---------------------|
 | Ali Abbasov | 97519124 | ali.abbasov@ue-germany.de |
 | Andrei Sundakov | 71338475 | andrei.sundakov@ue-germany.de |
-| Faromurz Bobozoda| {int} | {String}|
+| Faromurz Bobozoda| 48578283 | faromurz.bobozoda@ue-germany.de|
 | Sinem Zeybek| 79286079 | sinem.zeybek@ue-germany.de|
 | Tricia Tan Huiqien| 71882020 | huiqien.triciatan@ue-germany.de|
 | Vinícius de Souza Ramos| 39568395 | vinicius.desouzaramos@ue-germany.de|

@@ -12,7 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // DayScreen must receive a timeframe parameter ('today' || 'tomorrow')
+  // TODO: DayScreen must receive a timeframe parameter ('today' || 'tomorrow')
   Widget currentTimeframe = const DayScreen();
 
   @override
@@ -42,10 +42,18 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             const TimeframeSelector(),
-            Container(
-                padding: const EdgeInsets.all(20),
-                color: AppColors.orange,
-                child: currentTimeframe)
+            Expanded(
+              child: Container(
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          // TODO: Use downloaded image and set color filter to it
+                          image: NetworkImage(
+                              "https://images.unsplash.com/photo-1544376798-89aa6b82c6cd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dmVydGljYWwlMjBsYW5kc2NhcGV8ZW58MHx8MHx8fDA%3D"),
+                          fit: BoxFit.cover)),
+                  padding: const EdgeInsets.all(20),
+                  //color: AppColors.orange,
+                  child: currentTimeframe),
+            )
           ],
         ),
       ),

@@ -10,6 +10,54 @@ class DayTemperature extends StatefulWidget {
 class _DayTemperatureState extends State<DayTemperature> {
   @override
   Widget build(BuildContext context) {
-    return const Text('Day Temperature');
+    return const Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '4',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 100,
+                height: 0.7,
+              ),
+            ),
+            Column(
+              children: [
+                Text(
+                  '°C',
+                  style:
+                      TextStyle(color: Colors.white, fontSize: 30, height: 0.7),
+                ),
+                SizedBox(height: 10,),
+                Text(
+                  '↑5°',
+                  style: TextStyle(
+                      color: Color.fromARGB(180, 255, 255, 255), fontSize: 18),
+                ),
+                Text(
+                  '↓4°',
+                  style: TextStyle(
+                      color: Color.fromARGB(180, 255, 255, 255), fontSize: 18, height: 0.7),
+                ),
+              ],
+            )
+          ],
+        ),
+        SizedBox(height: 20),
+        Text(
+          'Haze',
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+        SizedBox(height: 40),
+        Icon(
+          Icons.cloud_outlined,
+          color: Color.fromARGB(180, 255, 255, 255),
+          size: 120,
+        )
+      ],
+    );
   }
 }

@@ -15,6 +15,7 @@ class _DayScreenState extends State<DayScreen> {
     return const Column(
       children: [
         DayConditions(),
+        SizedBox(height: 60),
         DayTemperature(),
       ],
     );

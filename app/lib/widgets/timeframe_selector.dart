@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TimeframeHeader extends StatelessWidget {
-  const TimeframeHeader({
+class TimeframeSelector extends StatelessWidget {
+  const TimeframeSelector({
     super.key,
   });
 

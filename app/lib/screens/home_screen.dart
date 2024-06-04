@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:app/widgets/timeframe_header.dart';
+import 'package:app/widgets/timeframe_selector.dart';
 import 'package:app/screens/day_screen.dart';
-import 'package:app/screens/week_screen.dart';
+// import 'package:app/screens/week_screen.dart';
 import 'package:app/data/app_colors.dart';
 
 class Home extends StatefulWidget {
@@ -41,10 +41,9 @@ class _HomeState extends State<Home> {
                 end: Alignment.bottomCenter)),
         child: Column(
           children: [
-            const TimeframeHeader(),
+            const TimeframeSelector(),
             Container(
                 padding: const EdgeInsets.all(20),
-                //color: Colors.yellow,
                 color: AppColors.orange,
                 child: currentTimeframe)
           ],

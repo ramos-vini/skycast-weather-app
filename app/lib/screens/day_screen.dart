@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:app/widgets/day_conditions.dart';
+import 'package:app/widgets/day_temperature.dart';
 
 class DayScreen extends StatefulWidget {
   const DayScreen({super.key});
@@ -12,12 +14,8 @@ class _DayScreenState extends State<DayScreen> {
   Widget build(BuildContext context) {
     return const Column(
       children: [
-        Row(
-          children: [Text('Row 1')],
-        ),
-        Row(
-          children: [Text('Row 2')],
-        ),
+        DayConditions(),
+        DayTemperature(),
       ],
     );
   }

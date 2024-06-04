@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app/widgets/timeframe_header.dart';
 import 'package:app/screens/day_screen.dart';
 import 'package:app/screens/week_screen.dart';
+import 'package:app/data/app_colors.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,14 +12,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // TODO: DayScreen must receive a timeframe parameter ('today' || 'tomorrow')
+  // DayScreen must receive a timeframe parameter ('today' || 'tomorrow')
   Widget currentTimeframe = const DayScreen();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: AppColors.blue,
         leading: IconButton(
             onPressed: () {},
             icon: const Icon(Icons.open_in_new_rounded, color: Colors.white)),
@@ -33,13 +34,18 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Container(
-        color: Colors.blue,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [AppColors.blue, AppColors.darkBlue],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
         child: Column(
           children: [
             const TimeframeHeader(),
             Container(
                 padding: const EdgeInsets.all(20),
-                color: Colors.yellow,
+                //color: Colors.yellow,
+                color: AppColors.orange,
                 child: currentTimeframe)
           ],
         ),

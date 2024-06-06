@@ -16,23 +16,23 @@ class _DayConditionsState extends State<DayConditions> {
       children: [
         Row(
           children: [
-            Icon(Icons.cloud_outlined, color: Colors.white,),
+            Icon(Icons.cloud_outlined, color: Colors.white, size: 30,),
             SizedBox(width: 6),
-            Text('75%', style: TextStyle(color: Colors.white, fontSize: 16),)
+            Text('75%', style: TextStyle(color: Colors.white, fontSize: 18),)
           ],
         ),
         Row(
           children: [
-            Icon(Icons.air_outlined, color: Colors.white,),
+            Icon(Icons.air_outlined, color: Colors.white, size: 30,),
             SizedBox(width: 6),
-            Text('3.1 m/s', style: TextStyle(color: Colors.white, fontSize: 16),)
+            Text('3.1 m/s', style: TextStyle(color: Colors.white, fontSize: 18,),)
           ],
         ),
         Row(
           children: [
-            Icon(Icons.water_drop_outlined, color: Colors.white,),
+            Icon(Icons.water_drop_outlined, color: Colors.white, size: 30,),
             SizedBox(width: 6),
-            Text('86%', style: TextStyle(color: Colors.white, fontSize: 16),)
+            Text('86%', style: TextStyle(color: Colors.white, fontSize: 18),)
           ],
         )
       ],

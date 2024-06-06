@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
         backgroundColor: AppColors.blue,
         leading: IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.open_in_new_rounded, color: Colors.white)),
+            icon: const Icon(Icons.menu_rounded, color: Colors.white)),
         title: const Text(
           'Berlin',
           style: TextStyle(color: Colors.white),
@@ -44,14 +44,13 @@ class _HomeState extends State<Home> {
             const TimeframeSelector(),
             Expanded(
               child: Container(
+                  // Background Image
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          // TODO: Use downloaded image and set color filter to it
-                          image: NetworkImage(
-                              "https://images.unsplash.com/photo-1544376798-89aa6b82c6cd?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dmVydGljYWwlMjBsYW5kc2NhcGV8ZW58MHx8MHx8fDA%3D"),
+                          image: AssetImage(
+                              'assets/images/template_home_background.png'),
                           fit: BoxFit.cover)),
-                  padding: const EdgeInsets.all(20),
-                  //color: AppColors.orange,
+                  padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                   child: currentTimeframe),
             )
           ],

@@ -20,7 +20,7 @@ class _DayTemperatureState extends State<DayTemperature> {
               '4',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 100,
+                fontSize: 130,
                 height: 0.7,
               ),
             ),
@@ -29,33 +29,33 @@ class _DayTemperatureState extends State<DayTemperature> {
                 Text(
                   '°C',
                   style:
-                      TextStyle(color: Colors.white, fontSize: 30, height: 0.7),
+                      TextStyle(color: Colors.white, fontSize: 34, height: 0.7, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 10,),
                 Text(
                   '↑5°',
                   style: TextStyle(
-                      color: Color.fromARGB(180, 255, 255, 255), fontSize: 18),
+                      color: Color.fromARGB(180, 255, 255, 255), fontSize: 22),
                 ),
                 Text(
                   '↓4°',
                   style: TextStyle(
-                      color: Color.fromARGB(180, 255, 255, 255), fontSize: 18, height: 0.7),
+                      color: Color.fromARGB(180, 255, 255, 255), fontSize: 22, height: 0.7),
                 ),
               ],
             )
           ],
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 30),
         Text(
           'Haze',
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: TextStyle(color: Colors.white, fontSize: 22),
         ),
-        SizedBox(height: 40),
+        SizedBox(height: 30),
         Icon(
           Icons.cloud_outlined,
           color: Color.fromARGB(180, 255, 255, 255),
-          size: 120,
+          size: 140,
         )
       ],
     );

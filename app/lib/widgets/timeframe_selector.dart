@@ -1,3 +1,4 @@
+import 'package:app/data/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class TimeframeSelector extends StatelessWidget {
@@ -15,7 +16,9 @@ class TimeframeSelector extends StatelessWidget {
           onPressed: () {},
           child: const Text(
             'TODAY',
-            style: TextStyle(color: Colors.white),
+            // TODO: Change style based on selected view
+            style:
+                TextStyle(color: AppColors.yellow, fontWeight: FontWeight.bold),
           ),
         ),
         TextButton(

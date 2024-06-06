@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/widgets/timeframe_selector.dart';
 import 'package:app/screens/day_screen.dart';
-// import 'package:app/screens/week_screen.dart';
 import 'package:app/data/app_colors.dart';
 
 class Home extends StatefulWidget {
@@ -34,11 +33,7 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [AppColors.blue, AppColors.darkBlue],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter)),
+        decoration: const BoxDecoration(color: AppColors.blue),
         child: Column(
           children: [
             const TimeframeSelector(),
@@ -47,8 +42,8 @@ class _HomeState extends State<Home> {
                   // Background Image
                   decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage(
-                              'assets/images/template_home_background.png'),
+                          image:
+                              AssetImage('assets/images/home_background.png'),
                           fit: BoxFit.cover)),
                   padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
                   child: currentTimeframe),

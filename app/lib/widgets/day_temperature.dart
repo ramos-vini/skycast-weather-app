@@ -35,12 +35,12 @@ class _DayTemperatureState extends State<DayTemperature> {
                 Text(
                   '↑5°',
                   style: TextStyle(
-                      color: Color.fromARGB(180, 255, 255, 255), fontSize: 22),
+                      color: Color.fromARGB(140, 255, 255, 255), fontSize: 22),
                 ),
                 Text(
                   '↓4°',
                   style: TextStyle(
-                      color: Color.fromARGB(180, 255, 255, 255), fontSize: 22, height: 0.7),
+                      color: Color.fromARGB(140, 255, 255, 255), fontSize: 22, height: 0.7),
                 ),
               ],
             )
@@ -54,7 +54,7 @@ class _DayTemperatureState extends State<DayTemperature> {
         SizedBox(height: 30),
         Icon(
           Icons.cloud_outlined,
-          color: Color.fromARGB(180, 255, 255, 255),
+          color: Color.fromARGB(140, 255, 255, 255),
           size: 140,
         )
       ],

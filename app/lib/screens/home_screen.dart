@@ -14,6 +14,12 @@ class _HomeState extends State<Home> {
   // TODO: DayScreen must receive a timeframe parameter ('today' || 'tomorrow')
   Widget currentTimeframe = const DayScreen();
 
+  void setTimeframe(Widget timeframe) {
+    setState(() {
+      currentTimeframe = timeframe;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +42,7 @@ class _HomeState extends State<Home> {
         decoration: const BoxDecoration(color: AppColors.blue),
         child: Column(
           children: [
-            const TimeframeSelector(),
+            TimeframeSelector(setTimeframe: setTimeframe),
             Expanded(
               child: Container(
                   // Background Image

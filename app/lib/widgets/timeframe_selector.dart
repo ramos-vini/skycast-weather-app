@@ -1,4 +1,3 @@
-import 'package:app/data/app_colors.dart';
 import 'package:app/screens/day_screen.dart';
 import 'package:app/screens/week_screen.dart';
 import 'package:app/widgets/timeframe_button.dart';

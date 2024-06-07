@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:app/widgets/timeframe_selector.dart';
-import 'package:app/screens/day_screen.dart';
 import 'package:app/data/app_colors.dart';
+import 'package:app/managers/screen_manager.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeState extends State<Home> {
-  // TODO: DayScreen must receive a timeframe parameter ('today' || 'tomorrow')
-  Widget currentTimeframe = const DayScreen();
+class _HomeScreenState extends State<HomeScreen> {
+  String currentTimeframe = 'today';
 
-  void setTimeframe(Widget timeframe) {
+  void setTimeframe(String timeframe) {
     setState(() {
       currentTimeframe = timeframe;
     });
@@ -42,7 +41,8 @@ class _HomeState extends State<Home> {
         decoration: const BoxDecoration(color: AppColors.blue),
         child: Column(
           children: [
-            TimeframeSelector(setTimeframe: setTimeframe),
+            TimeframeSelector(
+                currentTimeframe: currentTimeframe, setTimeframe: setTimeframe),
             Expanded(
               child: Container(
                   // Background Image
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
                               AssetImage('assets/images/home_background.png'),
                           fit: BoxFit.cover)),
                   padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-                  child: currentTimeframe),
+                  child: ScreenManager.getScreenByTimeframe(currentTimeframe)),
             )
           ],
         ),

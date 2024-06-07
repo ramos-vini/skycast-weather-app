@@ -1,46 +1,23 @@
-import 'package:app/screens/day_screen.dart';
-import 'package:app/screens/week_screen.dart';
 import 'package:app/widgets/timeframe_button.dart';
 import 'package:flutter/material.dart';
 
 class TimeframeSelector extends StatefulWidget {
-  const TimeframeSelector({super.key, required this.setTimeframe});
+  TimeframeSelector(
+      {super.key, required this.currentTimeframe, required this.setTimeframe});
 
-  final void Function(Widget) setTimeframe;
+  String currentTimeframe;
+  final void Function(String) setTimeframe;
 
   @override
   State<TimeframeSelector> createState() => _TimeframeSelectorState();
 }
 
 class _TimeframeSelectorState extends State<TimeframeSelector> {
-  String currentTimeframe = 'today';
-
-  void selectTimeframe(String timeframe) {
-    switch (timeframe) {
-      case 'today':
-        setState(() {
-          currentTimeframe = timeframe;
-          widget.setTimeframe(const DayScreen());
-        });
-        break;
-
-      case 'tomorrow':
-        setState(() {
-          currentTimeframe = timeframe;
-          widget.setTimeframe(const DayScreen());
-        });
-        break;
-
-      case 'week':
-        setState(() {
-          currentTimeframe = timeframe;
-          widget.setTimeframe(const WeekScreen());
-        });
-        break;
-
-      default:
-        'today';
-    }
+  // TODO: Check if it's possible to delete this function and directly call setTimeframe
+  void selectTimeframe(String selectedTimeframe) {
+    setState(() {
+      widget.setTimeframe(selectedTimeframe);
+    });
   }
 
   @override
@@ -49,18 +26,19 @@ class _TimeframeSelectorState extends State<TimeframeSelector> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        // TODO: Iterate through timeframes to display TimeframeButtons
         TimeframeButton(
             selectedTimeframe: 'today',
             selectTimeframe: selectTimeframe,
-            currentTimeframe: currentTimeframe),
+            currentTimeframe: widget.currentTimeframe),
         TimeframeButton(
             selectedTimeframe: 'tomorrow',
             selectTimeframe: selectTimeframe,
-            currentTimeframe: currentTimeframe),
+            currentTimeframe: widget.currentTimeframe),
         TimeframeButton(
             selectedTimeframe: 'week',
             selectTimeframe: selectTimeframe,
-            currentTimeframe: currentTimeframe),
+            currentTimeframe: widget.currentTimeframe),
       ],
     );
   }

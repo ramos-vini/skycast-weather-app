@@ -5,11 +5,11 @@ class TimeframeButton extends StatefulWidget {
   TimeframeButton(
       {super.key,
       required this.selectedTimeframe,
-      required this.selectTimeframe,
+      required this.setTimeframe,
       required this.currentTimeframe});
 
   String selectedTimeframe;
-  void Function(String) selectTimeframe;
+  void Function(String) setTimeframe;
   String currentTimeframe;
 
   @override
@@ -21,7 +21,7 @@ class _TimeframeButtonState extends State<TimeframeButton> {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        widget.selectTimeframe(widget.selectedTimeframe);
+        widget.setTimeframe(widget.selectedTimeframe);
       },
       child: Text(widget.selectedTimeframe.toUpperCase(),
           style: widget.currentTimeframe == widget.selectedTimeframe

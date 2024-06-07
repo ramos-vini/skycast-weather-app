@@ -12,4 +12,8 @@ class ScreenManager {
   static Widget? getScreenByTimeframe(String timeframe) {
     return _timeframesMap[timeframe];
   }
+
+  static List<String> getTimeframes() {
+    return _timeframesMap.keys as List<String>;
+  }
 }

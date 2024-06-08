@@ -45,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 currentTimeframe: currentTimeframe, setTimeframe: setTimeframe),
             Expanded(
               child: Container(
-                  // Background Image
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                           image:

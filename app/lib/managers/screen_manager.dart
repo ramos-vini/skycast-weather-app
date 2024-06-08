@@ -14,6 +14,6 @@ class ScreenManager {
   }
 
   static List<String> getTimeframes() {
-    return _timeframesMap.keys as List<String>;
+    return _timeframesMap.keys.toList();
   }
 }

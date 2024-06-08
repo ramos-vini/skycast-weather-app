@@ -1,5 +1,6 @@
 import 'package:app/widgets/timeframe_button.dart';
 import 'package:flutter/material.dart';
+import 'package:app/managers/screen_manager.dart';
 
 class TimeframeSelector extends StatefulWidget {
   TimeframeSelector(
@@ -13,25 +14,20 @@ class TimeframeSelector extends StatefulWidget {
 }
 
 class _TimeframeSelectorState extends State<TimeframeSelector> {
+  List<String> timeframes = ScreenManager.getTimeframes();
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // TODO: Iterate through timeframes to display TimeframeButtons
-        TimeframeButton(
-            selectedTimeframe: 'today',
-            setTimeframe: widget.setTimeframe,
-            currentTimeframe: widget.currentTimeframe),
-        TimeframeButton(
-            selectedTimeframe: 'tomorrow',
-            setTimeframe: widget.setTimeframe,
-            currentTimeframe: widget.currentTimeframe),
-        TimeframeButton(
-            selectedTimeframe: 'week',
-            setTimeframe: widget.setTimeframe,
-            currentTimeframe: widget.currentTimeframe),
+        ...timeframes.map((timeframe) {
+          return TimeframeButton(
+              selectedTimeframe: timeframe,
+              setTimeframe: widget.setTimeframe,
+              currentTimeframe: widget.currentTimeframe);
+        })
       ],
     );
   }

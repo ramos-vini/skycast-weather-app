@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app/widgets/timeframe_selector.dart';
 import 'package:app/data/app_colors.dart';
 import 'package:app/managers/screen_manager.dart';
+import 'package:app/widgets/home_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,9 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.blue,
-        leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu_rounded, color: Colors.white)),
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu_rounded, color: Colors.white),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
         title: const Text(
           'Berlin',
           style: TextStyle(color: Colors.white),
@@ -37,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: const Icon(Icons.search, color: Colors.white))
         ],
       ),
+      drawer: const HomeDrawer(),
       body: Container(
         decoration: const BoxDecoration(color: AppColors.blue),
         child: Column(

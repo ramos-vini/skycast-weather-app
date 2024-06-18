@@ -3,6 +3,7 @@ import 'package:app/widgets/timeframe_selector.dart';
 import 'package:app/data/app_colors.dart';
 import 'package:app/managers/screen_manager.dart';
 import 'package:app/widgets/home_drawer.dart';
+import 'package:app/screens/search_city_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,7 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: SearchCityScreen(),
+                );
+              },
               icon: const Icon(Icons.search, color: Colors.white))
         ],
       ),

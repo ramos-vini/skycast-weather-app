@@ -1,10 +1,20 @@
-import 'package:app/data/app_colors.dart';
+import 'package:app/widgets/timeframe_button.dart';
 import 'package:flutter/material.dart';
+import 'package:app/managers/screen_manager.dart';
 
-class TimeframeSelector extends StatelessWidget {
-  const TimeframeSelector({
-    super.key,
-  });
+class TimeframeSelector extends StatefulWidget {
+  TimeframeSelector(
+      {super.key, required this.currentTimeframe, required this.setTimeframe});
+
+  String currentTimeframe;
+  final void Function(String) setTimeframe;
+
+  @override
+  State<TimeframeSelector> createState() => _TimeframeSelectorState();
+}
+
+class _TimeframeSelectorState extends State<TimeframeSelector> {
+  List<String> timeframes = ScreenManager.getTimeframes();
 
   @override
   Widget build(BuildContext context) {
@@ -12,29 +22,12 @@ class TimeframeSelector extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        TextButton(
-          onPressed: () {},
-          child: const Text(
-            'TODAY',
-            // TODO: Change style based on selected view
-            style:
-                TextStyle(color: AppColors.yellow, fontWeight: FontWeight.bold),
-          ),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: const Text(
-            'TOMORROW',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: const Text(
-            'WEEK',
-            style: TextStyle(color: Colors.white),
-          ),
-        )
+        ...timeframes.map((timeframe) {
+          return TimeframeButton(
+              selectedTimeframe: timeframe,
+              setTimeframe: widget.setTimeframe,
+              currentTimeframe: widget.currentTimeframe);
+        })
       ],
     );
   }

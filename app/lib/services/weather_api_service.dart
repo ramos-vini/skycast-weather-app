@@ -16,7 +16,6 @@ class ApiService {
 
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
-    print('API key: $apiKey');
 
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));

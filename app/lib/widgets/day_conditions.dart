@@ -1,38 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:app/models/current_weather.dart';
 
-class DayConditions extends StatefulWidget {
-  const DayConditions({super.key});
+class DayConditions extends StatelessWidget {
+  const DayConditions({super.key, required this.weather});
 
-  @override
-  State<DayConditions> createState() => _DayConditionsState();
-}
+  final Weather weather;
 
-class _DayConditionsState extends State<DayConditions> {
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
           children: [
-            Icon(Icons.cloud_outlined, color: Colors.white, size: 30,),
-            SizedBox(width: 6),
-            Text('75%', style: TextStyle(color: Colors.white, fontSize: 18),)
+            const Icon(
+              Icons.cloud_outlined,
+              color: Colors.white,
+              size: 30,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              '${weather.clouds.all}%',
+              style: const TextStyle(color: Colors.white, fontSize: 18),
+            )
           ],
         ),
         Row(
           children: [
-            Icon(Icons.air_outlined, color: Colors.white, size: 30,),
-            SizedBox(width: 6),
-            Text('3.1 m/s', style: TextStyle(color: Colors.white, fontSize: 18,),)
+            const Icon(
+              Icons.air_outlined,
+              color: Colors.white,
+              size: 30,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              '${weather.wind.speed.toStringAsFixed(1)} m/s',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            )
           ],
         ),
         Row(
           children: [
-            Icon(Icons.water_drop_outlined, color: Colors.white, size: 30,),
-            SizedBox(width: 6),
-            Text('86%', style: TextStyle(color: Colors.white, fontSize: 18),)
+            const Icon(
+              Icons.water_drop_outlined,
+              color: Colors.white,
+              size: 30,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              '${weather.main.humidity}%',
+              style: const TextStyle(color: Colors.white, fontSize: 18),
+            )
           ],
         )
       ],

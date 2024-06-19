@@ -38,8 +38,8 @@ class Coord {
 
   factory Coord.fromJson(Map<String, dynamic> json) {
     return Coord(
-      lon: json['lon'],
-      lat: json['lat'],
+      lon: (json['lon'] as num).toDouble(),
+      lat: (json['lat'] as num).toDouble(),
     );
   }
 }
@@ -81,10 +81,10 @@ class Main {
 
   factory Main.fromJson(Map<String, dynamic> json) {
     return Main(
-      temp: json['temp'],
-      feelsLike: json['feels_like'],
-      tempMin: json['temp_min'],
-      tempMax: json['temp_max'],
+      temp: (json['temp'] as num).toDouble(),
+      feelsLike: (json['feels_like'] as num).toDouble(),
+      tempMin: (json['temp_min'] as num).toDouble(),
+      tempMax: (json['temp_max'] as num).toDouble(),
       pressure: json['pressure'],
       humidity: json['humidity'],
     );
@@ -100,9 +100,9 @@ class Wind {
 
   factory Wind.fromJson(Map<String, dynamic> json) {
     return Wind(
-      speed: json['speed'],
+      speed: (json['speed'] as num).toDouble(),
       deg: json['deg'],
-      gust: json['gust'],
+      gust: (json['gust'] as num).toDouble(),
     );
   }
 }

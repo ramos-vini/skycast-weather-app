@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:app/models/current_weather.dart';
+import 'package:app/config/config.dart';
 
 class ApiService {
-  static const String apiKey = '23b3c12b20431129bf35b89bef52850c';
+  static const String apiKey = openWeatherApiKey;
   static const String baseUrl =
       'https://api.openweathermap.org/data/2.5/weather';
 
@@ -15,6 +16,7 @@ class ApiService {
 
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
+    print('API key: $apiKey');
 
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));

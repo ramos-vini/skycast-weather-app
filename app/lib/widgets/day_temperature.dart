@@ -37,14 +37,16 @@ class DayTemperature extends StatelessWidget {
                 Text(
                   '↑${weather.main.tempMax.round()}°',
                   style: const TextStyle(
-                      color: Color.fromARGB(140, 255, 255, 255), fontSize: 22),
+                    color: Color.fromARGB(140, 255, 255, 255),
+                    fontSize: 22,
+                  ),
                 ),
                 Text(
                   '↓${weather.main.tempMin.round()}°',
                   style: const TextStyle(
-                      color: Color.fromARGB(140, 255, 255, 255),
-                      fontSize: 22,
-                      height: 0.7),
+                    color: Color.fromARGB(140, 255, 255, 255),
+                    fontSize: 22,
+                  ),
                 ),
               ],
             )

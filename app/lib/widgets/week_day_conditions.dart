@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class WeekDayConditions extends StatelessWidget {
-  WeekDayConditions({super.key, this.lastDay = false});
+  const WeekDayConditions({super.key, this.lastDay = false});
 
   // control variable for the Divider Widget
   // false: present; true: not present
-  bool lastDay;
+  final bool lastDay;
 
   @override
   Widget build(BuildContext context) {

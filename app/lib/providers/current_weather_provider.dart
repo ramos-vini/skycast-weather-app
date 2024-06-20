@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/current_weather.dart';
-import 'package:app/services/weather_api_service.dart';
+import 'package:app/services/current_weather_api_service.dart';
 
 class WeatherProvider with ChangeNotifier {
   Weather? _weather;

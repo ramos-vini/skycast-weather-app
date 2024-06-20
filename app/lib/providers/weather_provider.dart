@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/current_weather.dart';
-import 'package:app/services/current_weather_api_service.dart';
+import 'package:app/models/weather.dart';
+import 'package:app/services/weather_api_service.dart';
 
 class WeatherProvider with ChangeNotifier {
   Weather? _weather;
@@ -16,7 +16,7 @@ class WeatherProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      _weather = await ApiService().fetchWeather(lat, lon);
+      _weather = await WeatherApiService().fetchWeather(lat, lon);
     } catch (e) {
       print('Error fetching weather data: $e');
     } finally {

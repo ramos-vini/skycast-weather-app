@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:app/providers/forecast_weather_provider.dart';
-import 'package:app/widgets/week_day_conditions.dart';
+import 'package:app/providers/forecast_provider.dart';
+import 'package:app/widgets/forecast_conditions.dart';
 
-class WeekScreen extends StatefulWidget {
-  const WeekScreen({super.key});
+class ForecastScreen extends StatefulWidget {
+  const ForecastScreen({super.key});
 
   @override
-  _WeekScreenState createState() => _WeekScreenState();
+  _ForecastScreenState createState() => _ForecastScreenState();
 }
 
-class _WeekScreenState extends State<WeekScreen> {
+class _ForecastScreenState extends State<ForecastScreen> {
   @override
   void initState() {
     super.initState();
@@ -41,7 +41,7 @@ class _WeekScreenState extends State<WeekScreen> {
           itemCount: forecasts.length,
           itemBuilder: (context, index) {
             final forecast = forecasts[index];
-            return WeekDayConditions(
+            return ForecastConditions(
               forecast: forecast,
               lastDay: index == forecasts.length - 1,
             );

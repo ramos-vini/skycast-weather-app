@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/current_weather.dart';
+import 'package:app/models/weather.dart';
 
-class DayConditions extends StatelessWidget {
-  const DayConditions({super.key, required this.weather});
+class WeatherConditions extends StatelessWidget {
+  const WeatherConditions({super.key, required this.weather});
 
   final Weather weather;
 

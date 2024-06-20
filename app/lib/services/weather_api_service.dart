@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:app/models/current_weather.dart';
+import 'package:app/models/weather.dart';
 import 'package:app/config/config.dart';
 
-class ApiService {
+class WeatherApiService {
   static const String apiKey = openWeatherApiKey;
   static const String baseUrl =
       'https://api.openweathermap.org/data/2.5/weather';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/current_weather.dart';
+import 'package:app/models/weather.dart';
 import 'package:app/utils/weather_icon_mapper.dart';
 
-class DayTemperature extends StatelessWidget {
-  const DayTemperature({super.key, required this.weather});
+class WeatherTemperature extends StatelessWidget {
+  const WeatherTemperature({super.key, required this.weather});
 
   final Weather weather;
 

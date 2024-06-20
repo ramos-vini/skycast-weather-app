@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:app/models/forecast_weather.dart';
+import 'package:app/models/forecast.dart';
 import 'package:app/utils/weather_icon_mapper.dart';
 import 'package:app/utils/date_formatter.dart';
 
-class WeekDayConditions extends StatelessWidget {
+class ForecastConditions extends StatelessWidget {
   final Forecast forecast;
   final bool lastDay;
 
-  const WeekDayConditions({
+  const ForecastConditions({
     super.key,
     required this.forecast,
     this.lastDay = false,

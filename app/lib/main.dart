@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/screens/home_screen.dart';
-import 'package:app/providers/current_weather_provider.dart';
-import 'package:app/providers/forecast_weather_provider.dart';
+import 'package:app/providers/weather_provider.dart';
+import 'package:app/providers/forecast_provider.dart';
 
 void main() {
   runApp(const MyApp());

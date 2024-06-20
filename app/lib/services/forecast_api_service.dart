@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:app/models/forecast_weather.dart';
+import 'package:app/models/forecast.dart';
 import 'package:app/config/config.dart';
 
 class ForecastApiService {

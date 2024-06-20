@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:app/widgets/day_conditions.dart';
-import 'package:app/widgets/day_temperature.dart';
+import 'package:app/widgets/weather_conditions.dart';
+import 'package:app/widgets/weather_temperature.dart';
 import 'package:provider/provider.dart';
-import 'package:app/providers/current_weather_provider.dart';
+import 'package:app/providers/weather_provider.dart';
 
-class DayScreen extends StatefulWidget {
-  const DayScreen(String timeframe, {super.key});
+class WeatherScreen extends StatefulWidget {
+  const WeatherScreen(String timeframe, {super.key});
 
   @override
-  State<DayScreen> createState() => _DayScreenState();
+  State<WeatherScreen> createState() => _WeatherScreenState();
 }
 
-class _DayScreenState extends State<DayScreen> {
+class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void initState() {
     super.initState();
@@ -40,9 +40,9 @@ class _DayScreenState extends State<DayScreen> {
 
       return Column(
         children: [
-          DayConditions(weather: weather),
+          WeatherConditions(weather: weather),
           const SizedBox(height: 80),
-          DayTemperature(weather: weather),
+          WeatherTemperature(weather: weather),
         ],
       );
     });

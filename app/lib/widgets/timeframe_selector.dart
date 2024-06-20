@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:app/managers/screen_manager.dart';
 
 class TimeframeSelector extends StatefulWidget {
-  TimeframeSelector(
+  const TimeframeSelector(
       {super.key, required this.currentTimeframe, required this.setTimeframe});
 
-  String currentTimeframe;
+  final String currentTimeframe;
   final void Function(String) setTimeframe;
 
   @override

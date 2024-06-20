@@ -5,7 +5,8 @@ import 'package:app/config/config.dart';
 
 class ForecastApiService {
   static const String apiKey = openWeatherApiKey;
-  static const String baseUrl = 'https://api.openweathermap.org/data/2.5/forecast';
+  static const String baseUrl =
+      'https://api.openweathermap.org/data/2.5/forecast';
 
   Future<WeatherForecast> fetchForecast(double lat, double lon) async {
     print('Fetching weather forecast data for latitude: $lat, longitude: $lon');

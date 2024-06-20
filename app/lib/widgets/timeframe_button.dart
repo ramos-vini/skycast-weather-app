@@ -20,6 +20,13 @@ class _TimeframeButtonState extends State<TimeframeButton> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+    //TODO: Fix Alignment
+    //   style: 
+    //   ButtonStyle(
+    //   backgroundColor: MaterialStatePropertyAll(Colors.red),
+    //  // padding: MaterialStatePropertyAll(EdgeInsets.all(0))
+    //  ),
+
       onPressed: () {
         widget.setTimeframe(widget.selectedTimeframe);
       },

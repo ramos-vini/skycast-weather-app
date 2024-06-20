@@ -6,7 +6,7 @@ class ScreenManager {
   static const Map<String, Widget> _timeframesMap = {
     'today': DayScreen('today'),
     'tomorrow': DayScreen('tomorrow'),
-    'week': WeekScreen()
+    'forecast': WeekScreen()
   };
 
   static Widget? getScreenByTimeframe(String timeframe) {

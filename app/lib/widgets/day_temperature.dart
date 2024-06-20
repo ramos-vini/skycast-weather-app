@@ -11,6 +11,7 @@ class DayTemperature extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // TODO: Fix Alignment
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +59,8 @@ class DayTemperature extends StatelessWidget {
           style: const TextStyle(color: Colors.white, fontSize: 22),
         ),
         const SizedBox(height: 30),
-        getWeatherIcon(weather.weather[0].main),
+        Icon(getWeatherIcon(weather.weather[0].main),
+            color: const Color.fromARGB(140, 255, 255, 255), size: 140)
       ],
     );
   }

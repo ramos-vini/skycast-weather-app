@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/forecast_weather.dart';
+import 'package:app/utils/weather_icon_mapper.dart';
+import 'package:app/utils/date_formatter.dart';
 
 class WeekDayConditions extends StatelessWidget {
   final Forecast forecast;
@@ -22,17 +24,14 @@ class WeekDayConditions extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  forecast.date
-                      .toLocal()
-                      .toString()
-                      .split(' ')[0], // Display date
+                  formatDate(forecast.date),
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  forecast.description, // Display description
+                  forecast.main, // Display main description
                   style: const TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ],
@@ -40,9 +39,8 @@ class WeekDayConditions extends StatelessWidget {
             Row(
               children: [
                 Icon(
-                  Icons
-                      .wb_sunny_rounded, // Example icon, you might want to map this based on forecast data
-                  color: Colors.yellow,
+                  getWeatherIcon(forecast.main),
+                  color: const Color.fromARGB(140, 255, 255, 255),
                   size: 40,
                 ),
                 const SizedBox(
@@ -51,15 +49,16 @@ class WeekDayConditions extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    // TODO: Display the min and max temperatures of the day, not of the 3h span
                     Text(
-                      '${forecast.temp}°C', // Display temperature
+                      '${forecast.tempMax.round()}°C', // Display max temperature
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '${forecast.tempMin}°C', // Display min temperature
+                      '${forecast.tempMin.round()}°C', // Display min temperature
                       style: const TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],

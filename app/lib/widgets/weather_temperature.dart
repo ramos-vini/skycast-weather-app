@@ -1,14 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/weather.dart';
+import 'package:app/models/forecast.dart';
 import 'package:app/utils/weather_icon_mapper.dart';
 
 class WeatherTemperature extends StatelessWidget {
-  const WeatherTemperature({super.key, required this.weather});
+  const WeatherTemperature({Key? key, required this.weather}) : super(key: key);
 
-  final Weather weather;
+  final dynamic weather; // Can accept both Weather and Forecast objects
 
   @override
   Widget build(BuildContext context) {
+    double temp;
+    double tempMax;
+    double tempMin;
+    String main;
+    String icon;
+
+    if (weather is Weather) {
+      temp = weather.main.temp;
+      tempMax = weather.main.tempMax;
+      tempMin = weather.main.tempMin;
+      main = weather.weather[0].main;
+      icon = weather.weather[0].icon;
+    } else if (weather is Forecast) {
+      temp = weather.temp;
+      tempMax = weather.tempMax;
+      tempMin = weather.tempMin;
+      main = weather.main;
+      icon = weather.icon;
+    } else {
+      throw ArgumentError('Unsupported weather type');
+    }
+
     return Column(
       children: [
         // TODO: Fix Alignment
@@ -17,7 +40,7 @@ class WeatherTemperature extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${weather.main.temp.round()}',
+              '${temp.round()}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 130,
@@ -29,21 +52,22 @@ class WeatherTemperature extends StatelessWidget {
                 const Text(
                   '°C',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 34,
-                      height: 0.7,
-                      fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontSize: 34,
+                    height: 0.7,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  '↑${weather.main.tempMax.round()}°',
+                  '↑${tempMax.round()}°',
                   style: const TextStyle(
                     color: Color.fromARGB(140, 255, 255, 255),
                     fontSize: 22,
                   ),
                 ),
                 Text(
-                  '↓${weather.main.tempMin.round()}°',
+                  '↓${tempMin.round()}°',
                   style: const TextStyle(
                     color: Color.fromARGB(140, 255, 255, 255),
                     fontSize: 22,
@@ -55,11 +79,11 @@ class WeatherTemperature extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         Text(
-          weather.weather[0].main,
+          main,
           style: const TextStyle(color: Colors.white, fontSize: 22),
         ),
         const SizedBox(height: 30),
-        Icon(getWeatherIcon(weather.weather[0].main),
+        Icon(getWeatherIcon(main),
             color: const Color.fromARGB(140, 255, 255, 255), size: 140)
       ],
     );

@@ -49,7 +49,6 @@ class ForecastConditions extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // TODO: Display the min and max temperatures of the day, not of the 3h span
                     Text(
                       '${forecast.tempMax.round()}°C', // Display max temperature
                       style: const TextStyle(

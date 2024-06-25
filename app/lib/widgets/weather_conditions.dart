@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:app/models/weather.dart';
+import 'package:app/models/forecast.dart';
 
 class WeatherConditions extends StatelessWidget {
-  const WeatherConditions({super.key, required this.weather});
+  const WeatherConditions({Key? key, required this.weather}) : super(key: key);
 
-  final Weather weather;
+  final dynamic weather; // Can accept both Weather and Forecast objects
 
   @override
   Widget build(BuildContext context) {
+    int clouds;
+    double windSpeed;
+    int humidity;
+
+    if (weather is Weather) {
+      clouds = weather.clouds.all;
+      windSpeed = weather.wind.speed;
+      humidity = weather.main.humidity;
+    } else if (weather is Forecast) {
+      clouds = weather.clouds.toInt();
+      windSpeed = weather.windSpeed;
+      humidity = weather.humidity.toInt();
+    } else {
+      throw ArgumentError('Unsupported weather type');
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -21,7 +38,7 @@ class WeatherConditions extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             Text(
-              '${weather.clouds.all}%',
+              '$clouds%',
               style: const TextStyle(color: Colors.white, fontSize: 18),
             )
           ],
@@ -35,7 +52,7 @@ class WeatherConditions extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             Text(
-              '${weather.wind.speed.toStringAsFixed(1)} m/s',
+              '${windSpeed.toStringAsFixed(1)} m/s',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -52,7 +69,7 @@ class WeatherConditions extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             Text(
-              '${weather.main.humidity}%',
+              '$humidity%',
               style: const TextStyle(color: Colors.white, fontSize: 18),
             )
           ],

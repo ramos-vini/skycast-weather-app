@@ -4,9 +4,9 @@ import 'package:app/screens/forecast_screen.dart';
 
 class ScreenManager {
   static const Map<String, Widget> _timeframesMap = {
-    'today': WeatherScreen('today'),
-    'tomorrow': WeatherScreen('tomorrow'),
-    'forecast': ForecastScreen()
+    'today': WeatherScreen(timeframe: 'today'),
+    'tomorrow': WeatherScreen(timeframe: 'tomorrow'),
+    'week': ForecastScreen()
   };
 
   static Widget? getScreenByTimeframe(String timeframe) {

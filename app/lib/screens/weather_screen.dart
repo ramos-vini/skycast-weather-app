@@ -6,6 +6,7 @@ import 'package:app/widgets/weather_conditions.dart';
 import 'package:app/widgets/weather_temperature.dart';
 import 'package:app/models/weather.dart';
 import 'package:app/models/forecast.dart';
+import 'package:app/providers/location_provider.dart';
 
 class WeatherScreen extends StatefulWidget {
   final String timeframe;
@@ -20,14 +21,27 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void initState() {
     super.initState();
-    // Fetch weather data when the widget is first displayed
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.timeframe == 'today') {
-        context.read<WeatherProvider>().fetchWeather(52.0, 13.0);
-      } else if (widget.timeframe == 'tomorrow') {
-        context.read<ForecastProvider>().fetchForecast(52.0, 13.0);
-      }
+    // Fetch forecast data when the widget is first displayed
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _fetchForecast();
     });
+  }
+
+  Future<void> _fetchForecast() async {
+    final locationProvider = context.read<LocationProvider>();
+    if (locationProvider.currentPosition != null) {
+      if (widget.timeframe == 'today') {
+        context.read<WeatherProvider>().fetchWeather(
+            locationProvider.currentPosition!.latitude,
+            locationProvider.currentPosition!.longitude);
+      } else if (widget.timeframe == 'tomorrow') {
+        context.read<ForecastProvider>().fetchForecast(
+            locationProvider.currentPosition!.latitude,
+            locationProvider.currentPosition!.longitude);
+      }
+    } else {
+      print('No position available');
+    }
   }
 
   @override

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/providers/forecast_provider.dart';
 import 'package:app/widgets/forecast_conditions.dart';
+import 'package:app/providers/location_provider.dart';
 
 class ForecastScreen extends StatefulWidget {
   const ForecastScreen({super.key});
@@ -15,35 +16,53 @@ class _ForecastScreenState extends State<ForecastScreen> {
   void initState() {
     super.initState();
     // Fetch forecast data when the widget is first displayed
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // TODO: Input dynamic latitude and longitude
-      context.read<ForecastProvider>().fetchForecast(52.0, 13.0);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await _fetchForecast();
     });
+  }
+
+  Future<void> _fetchForecast() async {
+    final locationProvider = context.read<LocationProvider>();
+    if (locationProvider.currentPosition != null) {
+      context.read<ForecastProvider>().fetchForecast(
+          locationProvider.currentPosition!.latitude,
+          locationProvider.currentPosition!.longitude);
+    } else {
+      print('No position available');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ForecastProvider>(
-      builder: (context, forecastProvider, child) {
-        if (forecastProvider.loading) {
+    return Consumer<LocationProvider>(
+      builder: (context, locationProvider, child) {
+        if (locationProvider.loading) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        if (forecastProvider.forecast == null) {
-          return const Center(
-              child: Text('Failed to load forecast data',
-                  style: TextStyle(color: Colors.white)));
-        }
+        return Consumer<ForecastProvider>(
+          builder: (context, forecastProvider, child) {
+            if (forecastProvider.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-        final forecasts = forecastProvider.forecast!.forecasts;
+            if (forecastProvider.forecast == null) {
+              return const Center(
+                  child: Text('Failed to load forecast data',
+                      style: TextStyle(color: Colors.white)));
+            }
 
-        return ListView.builder(
-          itemCount: forecasts.length,
-          itemBuilder: (context, index) {
-            final forecast = forecasts[index];
-            return ForecastConditions(
-              forecast: forecast,
-              lastDay: index == forecasts.length - 1,
+            final forecasts = forecastProvider.forecast!.forecasts;
+
+            return ListView.builder(
+              itemCount: forecasts.length,
+              itemBuilder: (context, index) {
+                final forecast = forecasts[index];
+                return ForecastConditions(
+                  forecast: forecast,
+                  lastDay: index == forecasts.length - 1,
+                );
+              },
             );
           },
         );

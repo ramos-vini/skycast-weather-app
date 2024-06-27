@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:app/providers/weather_provider.dart';
 import 'package:app/providers/forecast_provider.dart';
+import 'package:app/providers/location_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => WeatherProvider()),
         ChangeNotifierProvider(create: (_) => ForecastProvider()),
+        ChangeNotifierProvider(create: (_) => LocationProvider()),
       ],
       child: const MaterialApp(
         title: 'Weather App',

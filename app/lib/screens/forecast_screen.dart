@@ -23,12 +23,14 @@ class _ForecastScreenState extends State<ForecastScreen> {
 
   Future<void> _fetchForecast() async {
     final locationProvider = context.read<LocationProvider>();
-    if (locationProvider.currentPosition != null) {
-      context.read<ForecastProvider>().fetchForecast(
-          locationProvider.currentPosition!.latitude,
-          locationProvider.currentPosition!.longitude);
+    final location = locationProvider.currentLocation;
+
+    if (location != null) {
+      context
+          .read<ForecastProvider>()
+          .fetchForecast(location.latitude, location.longitude);
     } else {
-      print('No position available');
+      print('No location available');
     }
   }
 

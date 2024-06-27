@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:app/services/location_service.dart';
+import 'package:app/models/location.dart';
 
 class LocationProvider with ChangeNotifier {
-  Position? _currentPosition;
+  Location? _currentLocation;
   bool _loading = true;
   final LocationService _locationService = LocationService();
 
-  Position? get currentPosition => _currentPosition;
+  Location? get currentLocation => _currentLocation;
   bool get loading => _loading;
 
   LocationProvider() {
@@ -16,7 +17,13 @@ class LocationProvider with ChangeNotifier {
 
   Future<void> _fetchInitialPosition() async {
     try {
-      _currentPosition = await _locationService.determinePosition();
+      Position position = await _locationService.determinePosition();
+      _currentLocation = Location(
+        name:
+            'Current Location', // You can customize this based on your app's needs
+        latitude: position.latitude,
+        longitude: position.longitude,
+      );
     } catch (e) {
       print('Error getting location: $e');
     } finally {
@@ -25,18 +32,11 @@ class LocationProvider with ChangeNotifier {
     }
   }
 
-  void setPosition(double latitude, double longitude) {
-    _currentPosition = Position(
+  void setLocation(String name, double latitude, double longitude) {
+    _currentLocation = Location(
+      name: name,
       latitude: latitude,
       longitude: longitude,
-      timestamp: DateTime.now(),
-      accuracy: 0.0,
-      altitude: 0.0,
-      altitudeAccuracy: 0.0,
-      heading: 0.0,
-      headingAccuracy: 0.0,
-      speed: 0.0,
-      speedAccuracy: 0.0,
     );
     notifyListeners();
   }

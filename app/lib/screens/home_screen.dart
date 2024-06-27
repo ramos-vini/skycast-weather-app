@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         title: const Text(
-          'San Francisco',
+          '{San Francisco}',
           style: TextStyle(color: Colors.white),
         ),
         actions: [

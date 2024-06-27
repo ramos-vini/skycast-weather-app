@@ -23,24 +23,26 @@ class _WeatherScreenState extends State<WeatherScreen> {
     super.initState();
     // Fetch forecast data when the widget is first displayed
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _fetchForecast();
+      await _fetchWeatherData();
     });
   }
 
-  Future<void> _fetchForecast() async {
+  Future<void> _fetchWeatherData() async {
     final locationProvider = context.read<LocationProvider>();
-    if (locationProvider.currentPosition != null) {
+    final location = locationProvider.currentLocation;
+
+    if (location != null) {
       if (widget.timeframe == 'today') {
-        context.read<WeatherProvider>().fetchWeather(
-            locationProvider.currentPosition!.latitude,
-            locationProvider.currentPosition!.longitude);
+        context
+            .read<WeatherProvider>()
+            .fetchWeather(location.latitude, location.longitude);
       } else if (widget.timeframe == 'tomorrow') {
-        context.read<ForecastProvider>().fetchForecast(
-            locationProvider.currentPosition!.latitude,
-            locationProvider.currentPosition!.longitude);
+        context
+            .read<ForecastProvider>()
+            .fetchForecast(location.latitude, location.longitude);
       }
     } else {
-      print('No position available');
+      print('No location available');
     }
   }
 

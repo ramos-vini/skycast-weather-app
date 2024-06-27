@@ -4,6 +4,7 @@ import 'package:app/screens/home_screen.dart';
 import 'package:app/providers/weather_provider.dart';
 import 'package:app/providers/forecast_provider.dart';
 import 'package:app/providers/location_provider.dart';
+import 'package:app/providers/city_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => WeatherProvider()),
         ChangeNotifierProvider(create: (context) => ForecastProvider()),
         ChangeNotifierProvider(create: (context) => LocationProvider(context)),
+        ChangeNotifierProvider(create: (context) => CityProvider()),
       ],
       child: const MaterialApp(
         title: 'Weather App',

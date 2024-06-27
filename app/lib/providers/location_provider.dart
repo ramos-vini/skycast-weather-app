@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:provider/provider.dart';
 import 'package:app/services/location_service.dart';
+import 'package:app/providers/weather_provider.dart';
 import 'package:app/models/location.dart';
+import 'package:app/models/weather.dart';
 
 class LocationProvider with ChangeNotifier {
   Location? _currentLocation;
@@ -11,18 +14,25 @@ class LocationProvider with ChangeNotifier {
   Location? get currentLocation => _currentLocation;
   bool get loading => _loading;
 
-  LocationProvider() {
-    _fetchInitialPosition();
+  LocationProvider(BuildContext context) {
+    _fetchInitialPosition(context);
   }
 
-  Future<void> _fetchInitialPosition() async {
+  Future<void> _fetchInitialPosition(BuildContext context) async {
     try {
-      Position position = await _locationService.determinePosition();
+      Position currentPosition = await _locationService.determinePosition();
+      // Fetch the weather data to get the city name
+      await context.read<WeatherProvider>().fetchWeather(
+          currentPosition.latitude, currentPosition.longitude);
+
+      Weather? weather = context.read<WeatherProvider>().weather;
+      String cityName = weather?.name ?? 'Unknown';
+
+      // Set the current location
       _currentLocation = Location(
-        name:
-            'Current Location', // You can customize this based on your app's needs
-        latitude: position.latitude,
-        longitude: position.longitude,
+        name: cityName,
+        latitude: currentPosition.latitude,
+        longitude: currentPosition.longitude,
       );
     } catch (e) {
       print('Error getting location: $e');
@@ -32,9 +42,9 @@ class LocationProvider with ChangeNotifier {
     }
   }
 
-  void setLocation(String name, double latitude, double longitude) {
+  void setPosition(double latitude, double longitude) {
     _currentLocation = Location(
-      name: name,
+      name: '', // Clear the name initially
       latitude: latitude,
       longitude: longitude,
     );

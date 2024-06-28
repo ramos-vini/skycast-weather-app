@@ -54,7 +54,7 @@ class SearchCityScreen extends SearchDelegate {
                   onTap: () async {
                     await context
                         .read<LocationProvider>()
-                        .setLocationByCity(city);
+                        .setLocationByCity(context, city);
                     close(context, city);
                   },
                 );
@@ -107,7 +107,7 @@ class SearchCityScreen extends SearchDelegate {
                   onTap: () async {
                     await context
                         .read<LocationProvider>()
-                        .setLocationByCity(city);
+                        .setLocationByCity(context, city);
                     close(context, city);
                   },
                 );

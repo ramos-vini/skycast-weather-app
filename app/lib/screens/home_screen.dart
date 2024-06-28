@@ -72,7 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               AssetImage('assets/images/home_background.png'),
                           fit: BoxFit.cover)),
                   padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-                  child: ScreenManager.getScreenByTimeframe(currentTimeframe)),
+                  child: Consumer<LocationProvider>(
+                    builder: (context, locationProvider, child) {
+                      return ScreenManager.getScreenByTimeframe(
+                          currentTimeframe);
+                    },
+                  )),
             )
           ],
         ),

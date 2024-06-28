@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/providers/city_provider.dart';
+import 'package:app/providers/location_provider.dart';
 import 'package:app/models/city.dart';
 
 class SearchCityScreen extends SearchDelegate {
@@ -50,8 +51,10 @@ class SearchCityScreen extends SearchDelegate {
                 return ListTile(
                   title: Text(
                       '${city.name} - ${city.state ?? ''} ${city.country}'),
-                  onTap: () {
-                    // Handle city selection
+                  onTap: () async {
+                    await context
+                        .read<LocationProvider>()
+                        .setLocationByCity(city);
                     close(context, city);
                   },
                 );
@@ -65,14 +68,16 @@ class SearchCityScreen extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // Show "My Location" suggestion if query is empty
     if (query.isEmpty) {
       return ListView(
         children: [
           ListTile(
-            leading: const Icon(Icons.location_on), // Pin icon
+            leading: const Icon(Icons.location_on),
             title: const Text('My Location'),
-            onTap: () {
+            onTap: () async {
+              await context
+                  .read<LocationProvider>()
+                  .setLocationToCurrentPosition(context);
               close(context, 'My Location');
             },
           )
@@ -90,7 +95,7 @@ class SearchCityScreen extends SearchDelegate {
         } else {
           List<City>? cities = context.watch<CityProvider>().cities;
           if (cities == null || cities.isEmpty) {
-            return const Center(child: Text('No suggestions available'));
+            return const Center(child: Text('No results found'));
           } else {
             return ListView.builder(
               itemCount: cities.length,
@@ -99,10 +104,11 @@ class SearchCityScreen extends SearchDelegate {
                 return ListTile(
                   title: Text(
                       '${city.name} - ${city.state ?? ''} ${city.country}'),
-                  onTap: () {
-                    // Handle suggestion selection
-                    query = city.name;
-                    showResults(context);
+                  onTap: () async {
+                    await context
+                        .read<LocationProvider>()
+                        .setLocationByCity(city);
+                    close(context, city);
                   },
                 );
               },

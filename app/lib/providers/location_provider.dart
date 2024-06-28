@@ -16,14 +16,13 @@ class LocationProvider with ChangeNotifier {
   bool get loading => _loading;
 
   LocationProvider(BuildContext context) {
-    _fetchInitialPosition(context);
+    setLocationToCurrentPosition(context);
   }
 
-  Future<void> _fetchInitialPosition(BuildContext context) async {
+  Future<void> setLocationToCurrentPosition(BuildContext context) async {
     try {
       Position currentPosition = await _locationService.determinePosition();
-      await setLocationByCoordinates(
-          context, currentPosition.latitude, currentPosition.longitude);
+      await setLocationByCoordinates(context, currentPosition.latitude, currentPosition.longitude);
     } catch (e) {
       print('Error getting location: $e');
     } finally {
@@ -32,10 +31,8 @@ class LocationProvider with ChangeNotifier {
     }
   }
 
-  Future<void> setLocationByCoordinates(
-      BuildContext context, double latitude, double longitude) async {
+  Future<void> setLocationByCoordinates(BuildContext context, double latitude, double longitude) async {
     try {
-      // Set the initial coordinates
       _currentLocation = Location(
         name: '', // Clear the name initially
         latitude: latitude,
@@ -43,12 +40,10 @@ class LocationProvider with ChangeNotifier {
       );
       notifyListeners();
 
-      // Fetch the weather data to get the city name
       await context.read<WeatherProvider>().fetchWeather(latitude, longitude);
       Weather? weather = context.read<WeatherProvider>().weather;
       String cityName = weather?.name ?? 'Unknown';
 
-      // Update the location with the city name
       _currentLocation = Location(
         name: cityName,
         latitude: latitude,
@@ -62,7 +57,6 @@ class LocationProvider with ChangeNotifier {
 
   Future<void> setLocationByCity(City city) async {
     try {
-      // Update the location with the city's details
       _currentLocation = Location(
         name: city.name,
         latitude: city.lat,

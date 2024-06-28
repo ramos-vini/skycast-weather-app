@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:app/models/city.dart';
+import 'package:app/config/config.dart';
 
 class CityApiService {
+  final String _apiKey = openWeatherApiKey;
   final String _baseUrl = 'http://api.openweathermap.org/geo/1.0/direct';
-  final String _apiKey = 'your_api_key_here';
 
   Future<List<City>> fetchCitiesByName(String cityName) async {
     final response = await http

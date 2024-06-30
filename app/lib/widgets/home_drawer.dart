@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/data/app_colors.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
@@ -8,7 +9,7 @@ class HomeDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.85, // Custom width
+        width: MediaQuery.of(context).size.width * 0.85,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
@@ -25,7 +26,7 @@ class HomeDrawer extends StatelessWidget {
                   width: 10,
                 ),
                 Text(
-                  'Weather App',
+                  'SkyCast',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -36,7 +37,14 @@ class HomeDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.open_in_new_rounded),
               title: const Text('Website'),
-              onTap: () {},
+              onTap: () async {
+                const url = 'This is not a valid URL'; // Replace by a valid URL
+                if (await canLaunchUrlString(url)) {
+                  await launchUrlString(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
             ),
             ListTile(
               leading: const Icon(Icons.settings),

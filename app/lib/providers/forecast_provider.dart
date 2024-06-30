@@ -5,6 +5,7 @@ import 'package:app/services/forecast_api_service.dart';
 class ForecastProvider with ChangeNotifier {
   WeatherForecast? _forecast;
   bool _loading = false;
+  final ForecastApiService _forecastApiService = ForecastApiService();
 
   WeatherForecast? get forecast => _forecast;
   bool get loading => _loading;
@@ -18,7 +19,7 @@ class ForecastProvider with ChangeNotifier {
 
     try {
       WeatherForecast fullForecast =
-          await ForecastApiService().fetchForecast(lat, lon);
+          await _forecastApiService.fetchForecast(lat, lon);
 
       // Group forecasts by day
       Map<String, List<Forecast>> forecastsByDay = {};

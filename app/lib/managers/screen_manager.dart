@@ -9,8 +9,8 @@ class ScreenManager {
     'week': ForecastScreen()
   };
 
-  static Widget? getScreenByTimeframe(String timeframe) {
-    return _timeframesMap[timeframe];
+  static Widget getScreenByTimeframe(String timeframe) {
+    return _timeframesMap[timeframe] ?? const Center(child: Text('Invalid timeframe'));
   }
 
   static List<String> getTimeframes() {

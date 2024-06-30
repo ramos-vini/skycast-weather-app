@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:app/widgets/timeframe_selector.dart';
 import 'package:app/data/app_colors.dart';
 import 'package:app/managers/screen_manager.dart';
 import 'package:app/widgets/home_drawer.dart';
 import 'package:app/screens/search_city_screen.dart';
+import 'package:app/providers/location_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -34,9 +36,15 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ),
-        title: const Text(
-          'Berlin',
-          style: TextStyle(color: Colors.white),
+        title: Consumer<LocationProvider>(
+          builder: (context, locationProvider, child) {
+            String locationName =
+                locationProvider.currentLocation?.name ?? 'Loading...';
+            return Text(
+              locationName,
+              style: const TextStyle(color: Colors.white),
+            );
+          },
         ),
         actions: [
           IconButton(
@@ -64,7 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               AssetImage('assets/images/home_background.png'),
                           fit: BoxFit.cover)),
                   padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-                  child: ScreenManager.getScreenByTimeframe(currentTimeframe)),
+                  child: Consumer<LocationProvider>(
+                    builder: (context, locationProvider, child) {
+                      return ScreenManager.getScreenByTimeframe(
+                          currentTimeframe);
+                    },
+                  )),
             )
           ],
         ),

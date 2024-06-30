@@ -10,7 +10,8 @@ class WeatherProvider with ChangeNotifier {
   bool get loading => _loading;
 
   Future<void> fetchWeather(double lat, double lon) async {
-    print('Provider: Fetching weather data for latitude: $lat, longitude: $lon');
+    print(
+        'Provider: Fetching weather data for latitude: $lat, longitude: $lon');
 
     _loading = true;
     notifyListeners();
@@ -19,6 +20,7 @@ class WeatherProvider with ChangeNotifier {
       _weather = await WeatherApiService().fetchWeather(lat, lon);
     } catch (e) {
       print('Error fetching weather data: $e');
+      _weather = null; // Reset weather to null in case of error
     } finally {
       _loading = false;
       notifyListeners();

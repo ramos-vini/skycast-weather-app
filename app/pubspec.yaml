@@ -48,7 +48,8 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/logo_zoomed_out.png"
+  image_path_android: "assets/images/logo_zoomed_out.png"
+  image_path_ios: "assets/images/logo.png"
   adaptive_icon_background: "#035397"
   adaptive_icon_foreground: "assets/images/logo_zoomed_out.png"
 

@@ -71,17 +71,6 @@ class LocationProvider with ChangeNotifier {
       notifyListeners();
 
       await context.read<WeatherProvider>().fetchWeather(city.lat, city.lon);
-      Weather? weather = context.read<WeatherProvider>().weather;
-      String cityName = weather?.name ?? 'Unknown';
-
-      _currentLocation = Location(
-        name: cityName,
-        latitude: city.lat,
-        longitude: city.lon,
-      );
-      notifyListeners();
-
-      // Fetch forecast data for the updated city
       await context.read<ForecastProvider>().fetchForecast(city.lat, city.lon);
     } catch (e) {
       print('Error setting location or fetching data: $e');

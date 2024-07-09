@@ -38,7 +38,7 @@ class HomeDrawer extends StatelessWidget {
               leading: const Icon(Icons.open_in_new_rounded),
               title: const Text('Website'),
               onTap: () async {
-                const url = 'This is not a valid URL'; // Replace by a valid URL
+                const url = 'https://www.google.com/'; // Replace by the hosted web app URL
                 if (await canLaunchUrlString(url)) {
                   await launchUrlString(url);
                 } else {

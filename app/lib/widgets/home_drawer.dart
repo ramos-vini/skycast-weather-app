@@ -38,7 +38,7 @@ class HomeDrawer extends StatelessWidget {
               leading: const Icon(Icons.open_in_new_rounded),
               title: const Text('Website'),
               onTap: () async {
-                const url = 'https://www.google.com/'; // Replace by the hosted web app URL
+                const url = 'https://github.com/ramos-vini';
                 if (await canLaunchUrlString(url)) {
                   await launchUrlString(url);
                 } else {
